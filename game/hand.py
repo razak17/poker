@@ -1,6 +1,8 @@
 class Hand():
     def __init__(self, cards):
-        self.cards = cards
+        cards_copy = cards[:]
+        cards_copy.sort()
+        self.cards = cards_copy
 
     @property
     def _rank_validations_from_best_to_worst(self):
