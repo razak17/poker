@@ -1,8 +1,15 @@
 venv/
 
+__pycache__
+
+game/__pycache__
+tests/__pycache__
+__init__.py
+
 test_hand.pyc
 test_card.pyc
 test_deck.pyc
 test_game_round.pyc
 test_player.pyc
+
 .vscode

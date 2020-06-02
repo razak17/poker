@@ -4,20 +4,24 @@ from game.card import Card
 
 class CardTest(unittest.TestCase):
     def test_has_rank(self):
-        card = Card(rank="Queen", suit="Hearts")
-        self.assertEqual(card.rank, "Queen")
+        card = Card(rank="Jack", suit="Hearts")
+        self.assertEqual(card.rank, "Jack")
 
     def test_has_suit(self):
         card = Card(rank="2", suit="Spades")
         self.assertEqual(card.suit, "Spades")
 
+    def test_knows_its_rank_index(self):
+        card = Card(rank="Queen", suit="Hearts")
+        self.assertEqual(card.rank_index, 10)
+
     def test_has_string_representation_with_suit_and_rank(self):
-        card = Card("5", "Clubs")
-        self.assertEqual(str(card), "5 of Clubs")
+        card = Card("9", "Clubs")
+        self.assertEqual(str(card), "9 of Clubs")
 
     def test_has_technical_representation(self):
-        card = Card("5", "Clubs")
-        self.assertEqual(repr(card), "Card('5', 'Clubs')")
+        card = Card("9", "Clubs")
+        self.assertEqual(repr(card), "Card('9', 'Clubs')")
 
     def test_has_four_possible_suits(self):
         self.assertEqual(
@@ -49,7 +53,7 @@ class CardTest(unittest.TestCase):
             Card(rank="2", suit="Hearts"),
             Card(rank="2", suit="Hearts"))
 
-    def test_card_can_sort_itself_with_another_one(self):
+    def test_card_can_evaluate_its_rank_with_another_one(self):
         queen_of_spades = Card(rank="Queen", suit="Spades")
         king_of_spades = Card(rank="King", suit="Spades")
         evaluation = queen_of_spades < king_of_spades
