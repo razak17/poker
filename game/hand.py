@@ -7,6 +7,7 @@ class Hand():
     @property
     def _rank_validations_from_best_to_worst(self):
         return (
+            ("Straight Flush", self._straight_flush),
             ("Four of a Kind", self._four_of_a_kind),
             ("Full House", self._full_house),
             ("Flush", self._flush),
@@ -17,18 +18,21 @@ class Hand():
             ("High Card", self._high_card)
         )
 
-    def _full_house(self):
-        return self._three_of_a_kind() and self._pair()
-
     def best_rank(self):
         for rank in self._rank_validations_from_best_to_worst:
             name, validator_func = rank
             if validator_func():
                 return name
 
+    def _straight_flush(self):
+        return self._flush() and self._straight()
+
     def _four_of_a_kind(self):
         ranks_with_four_of_a_kind = self._ranks_with_count(4)
         return len(ranks_with_four_of_a_kind) == 1
+
+    def _full_house(self):
+        return self._three_of_a_kind() and self._pair()
 
     def _flush(self):
         suits_that_occur_5_or_more = {
