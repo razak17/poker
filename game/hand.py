@@ -16,7 +16,8 @@ class Hand():
             ("Three of a Kind", self._three_of_a_kind),
             ("Two Pair", self._two_pair),
             ("Pair", self._pair),
-            ("High Card", self._high_card)
+            ("High Card", self._high_card),
+            ("No Cards", self._no_cards)
         )
 
     def best_rank(self):
@@ -26,6 +27,8 @@ class Hand():
                 return name
 
     def _royal_flush(self):
+        if not self._straight_flush():
+            return False
         return self._straight_flush() and self.cards[-1].rank == 'Ace'
 
     def _straight_flush(self):
@@ -47,12 +50,12 @@ class Hand():
 
         return len(suits_that_occur_5_or_more) == 1
 
-
     def _straight(self):
         if len(self.cards) < 5:
             return False
         rank_indices = [card.rank_index for card in self.cards]
-        consecutive_indices = list(range(rank_indices[0], rank_indices[-1] + 1))
+        consecutive_indices = list(
+            range(rank_indices[0], rank_indices[-1] + 1))
         return rank_indices == consecutive_indices
 
     def _three_of_a_kind(self):
@@ -68,7 +71,10 @@ class Hand():
         return len(ranks_with_pairs) == 1
 
     def _high_card(self):
-        return True
+        return len(self.cards) >= 2
+
+    def _no_cards(self):
+        return len(self.cards) == 0
 
     def _ranks_with_count(self, count):
         return {

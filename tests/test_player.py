@@ -15,13 +15,11 @@ class PlayerTest(unittest.TestCase):
 
     def test_figures_out_own_best_hand(self):
         mock_hand = MagicMock()
-        mock_hand.best_rank.return_value = "Straight Flush"
-
+        mock_hand.best_rank.return_value = "Royal Flush"
         player = Player(name = "Boris", hand = mock_hand)
-
         self.assertEqual(
             player.best_hand(),
-            "Straight Flush"
+            "Royal Flush"
         )
 
         mock_hand.best_rank.assert_called()
