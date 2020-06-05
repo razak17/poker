@@ -74,5 +74,5 @@ class GameROundTest(unittest.TestCase):
             call(2), call(2)
         ])
 
-        # mock_player1.add_cards.assert_called_with(first_two_cards)
-        # mock_player2.add_cards.assert_called_with(next_two_cards)
+        mock_player1.add_cards.assert_called_with(first_two_cards)
+        mock_player2.add_cards.assert_called_with(next_two_cards)
