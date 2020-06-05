@@ -1,8 +1,12 @@
 class Hand():
-    def __init__(self, cards):
-        cards_copy = cards[:]
-        cards_copy.sort()
-        self.cards = cards_copy
+    def __init__(self):
+        self.cards = []
+
+    def add_cards(self, cards):
+        copy = self.cards[:]
+        copy.extend(cards)
+        copy.sort()
+        self.cards = copy
 
     @property
     def _rank_validations_from_best_to_worst(self):
