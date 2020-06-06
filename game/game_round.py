@@ -9,8 +9,13 @@ class GameRound():
         self._make_bets()
 
         self._deal_flop_cards()
+        self._make_bets()
+
         self._deal_turn_cards()
+        self._make_bets()
+
         self._deal_river_cards()
+        self._make_bets()
 
     def _shuffle_deck(self):
         self.deck.shuffle()

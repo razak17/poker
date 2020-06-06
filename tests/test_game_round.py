@@ -22,9 +22,9 @@ class GameROundTest(unittest.TestCase):
             Card(rank="10", suit="Spades")
         ]
 
-        self.turn_card = [Card(rank="9", suit="Hearts")]
+        self.turn_card = [Card(rank="Queen", suit="Hearts")]
 
-        self.river_card = [Card(rank="Queen", suit="Clubs")]
+        self.river_card = [Card(rank="Ace", suit="Spades")]
 
     def test_stores_deck_and_players(self):
         deck = MagicMock()
