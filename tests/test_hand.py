@@ -42,68 +42,6 @@ class HandTest(unittest.TestCase):
             ]
         )
 
-    def test_figures_out_three_of_a_kind_is_best_rank(self):
-        cards = [
-            Card(rank="King", suit="Clubs"),
-            Card(rank="King", suit="Hearts"),
-            Card(rank="King", suit="Diamonds"),
-            Card(rank="Ace", suit="Spades"),
-            Card(rank="5", suit="Clubs")
-        ]
-
-        hand = Hand()
-        hand.add_cards(cards)
-
-        self.assertEqual(
-            hand.best_rank(),
-            "Three of a Kind"
-        )
-
-    def test_figures_out_straight_is_best_rank(self):
-        cards = [
-            Card(rank="6", suit="Hearts"),
-            Card(rank="7", suit="Diamonds"),
-            Card(rank="8", suit="Spades"),
-            Card(rank="9", suit="Clubs"),
-            Card(rank="10", suit="Clubs"),
-        ]
-
-        hand = Hand()
-        hand.add_cards(cards)
-
-        self.assertEqual(
-            hand.best_rank(),
-            "Straight"
-        )
-
-    def test_does_not_deem_two_consecutive_cards_as_straight(self):
-        cards = [
-            Card(rank="9", suit="Spades"),
-            Card(rank="10", suit="Diamonds")
-        ]
-
-        hand = Hand()
-        hand.add_cards(cards)
-
-        self.assertEqual(
-            hand.best_rank(),
-            "High Card"
-        )
-
-    def test_figures_out_best_rank_is_flush(self):
-        cards = [
-            Card(rank=rank, suit="Hearts")
-            for rank in ["2", "5", "8", "10", "Ace"]
-        ]
-
-        hand = Hand()
-        hand.add_cards(cards)
-
-        self.assertEqual(
-            hand.best_rank(),
-            "Flush"
-        )
-
     def test_figures_out_full_house_is_best_rank(self):
         cards = [
             Card(rank="3", suit="Clubs"),
