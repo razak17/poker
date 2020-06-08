@@ -10,4 +10,6 @@ from .flush import FlushValidator
 from .straight import StraightValidator
 from .full_house import FullHouseValidator
 from .four_of_a_kind import FourOfAKindValidator
+from .straight_flush import StraightFlushValidator
+from .royal_flush import RoyalFlushValidator
 
