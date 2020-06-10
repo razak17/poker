@@ -6,7 +6,7 @@ class FullHouseValidator():
         self.name = "Full House"
 
     def is_valid(self):
-        return ThreeOfAKindValidator(cards=self.cards).is_valid and PairValidator(cards=self.cards).is_valid()
+        return ThreeOfAKindValidator(cards=self.cards).is_valid() and PairValidator(cards=self.cards).is_valid()
 
     def valid_cards(self):
         three_of_a_kind_cards = ThreeOfAKindValidator(

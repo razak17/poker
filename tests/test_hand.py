@@ -55,5 +55,5 @@ class HandTest(unittest.TestCase):
 
         self.assertEqual(
             hand.best_rank(),
-            "Pair"
+            (0, "Pair", cards)
         )
