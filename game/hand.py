@@ -16,6 +16,20 @@ class Hand():
     def __init__(self):
         self.cards = []
 
+    VALIDATORS = (
+        RoyalFlushValidator,
+        StraightFlushValidator,
+        FourOfAKindValidator,
+        FullHouseValidator,
+        FlushValidator,
+        StraightValidator,
+        ThreeOfAKindValidator,
+        TwoPairValidator,
+        PairValidator,
+        HighCardValidator,
+        NoCardsValidator,
+    )
+
     def __repr__(self):
         str_cards = [str(card) for card in self.cards]
         return ", ".join(str_cards)
@@ -26,24 +40,7 @@ class Hand():
         copy.sort()
         self.cards = copy
 
-    @property
-    def _rank_validations_from_best_to_worst(self):
-        return (
-            ("Royal Flush", RoyalFlushValidator(cards=self.cards).is_valid),
-            ("Straight Flush", StraightFlushValidator(cards=self.cards).is_valid),
-            ("Four of a Kind", FourOfAKindValidator(cards=self.cards).is_valid),
-            ("Full House", FullHouseValidator(cards=self.cards).is_valid),
-            ("Flush", FlushValidator(cards=self.cards).is_valid),
-            ("Straight", StraightValidator(cards=self.cards).is_valid),
-            ("Three of a Kind", ThreeOfAKindValidator(cards=self.cards).is_valid),
-            ("Two Pair", TwoPairValidator(cards=self.cards).is_valid),
-            ("Pair", PairValidator(cards = self.cards).is_valid),
-            ("High Card", HighCardValidator(cards = self.cards).is_valid),
-            ("No Cards", NoCardsValidator(cards = self.cards).is_valid)
-        )
-
     def best_rank(self):
-        for rank in self._rank_validations_from_best_to_worst:
-            name, validator_func = rank
-            if validator_func():
-                return name
+        for validator_klass in self.VALIDATORS:
+            validator = validator_klass(cards = self.cards)
+            return validator.name if validator.is_valid() else None
